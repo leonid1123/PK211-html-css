@@ -25,4 +25,17 @@ body {
     justify-content: left;
     padding: 10px;
     text-decoration: none;
+
+    border:2px solid orange;
+    border-radius: 5px;
+}
+.navbar > .active {
+    background-color: #F27405;
+}
+.section {
+    display: flex;
+    flex-wrap: nowrap;
+}
+.section > .sideText {
+ padding-left: 20px;
 }
