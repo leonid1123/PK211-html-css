@@ -1,0 +1,28 @@
+body {
+    background-color: #05C7F2;
+}
+.header {
+    display:flex;
+    align-items: center;
+}
+.header > h1{
+    color: rgb(0, 0, 0);
+    flex-grow: 9;
+    text-align: center;
+}
+.header > .headerImg {
+    display: block;
+    flex-grow: 1;
+}
+.navbar {
+    display: flex;
+    background-color: #A9BF04;
+}
+.navbar > a {
+    text-align: center;
+    background-color: #F2B705;
+    flex-wrap: nowrap;
+    justify-content: left;
+    padding: 10px;
+    text-decoration: none;
+}

@@ -1,0 +1,63 @@
+#par_no1 {
+    color: blue;
+}
+.yellow {
+    color:rgb(31, 231, 13)
+}
+body {
+    width:80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+p {
+    text-align: justify;
+    color: rgb(45, 141, 36);
+}
+.header {
+    text-align: center;
+}
+.navbar {
+    width: 100%;
+    background-color: #555;
+    overflow: auto;
+}
+.navbar a {
+    float: left;
+    text-align: center;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+}
+.navbar a:hover {
+    background-color: #000;
+}
+.active {
+    background-color: #04AA6D;
+}
+.pict {
+    float: left;
+    width: 30%;
+}
+.pict img {
+    width: 100%;
+}
+.sideText {
+    float: left;
+    width: 65%;
+    padding-left: 5%;
+}
+.bottomText {
+    float: left;
+}
+.footer {
+    float: left;
+}
+.column {
+    float: left;
+    width: 31.33%;
+    padding: 1%;
+  }
+.footer a {
+    display: block;
+}
