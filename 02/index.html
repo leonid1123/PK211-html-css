@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,6 +51,7 @@
     <div class="main">
         <div class="ArticleMenu">
             <h1 id="ArticleMenuHeader">Все потоки</h1>
+
             <div class="ArticleMenuMenu">
                 <a href="#">Статьи</a>
                 <a href="#">Новости</a>
@@ -62,8 +64,27 @@
             </div>
         </div>
         <div id="ArticleSideMenu">
+            <button onclick="clk()">Жмяк!</button>
+            <p id="res"></p>
 
+            <p id="txt">Это текст!</p>
         </div>
     </div>
+    <script>
+        let x = true;
+        let a = document.getElementById("res");
+        let b = document.getElementById("txt");
+        let c = document.getElementsByClassName("menu1");
+        function clk() {
+            if (x) {
+                c[0].style.display = "none";
+                x=false;
+            } else {
+                c[0].style.display = "block";
+                x=true;
+            }
+
+        }
+    </script>
 </body>
 </html>

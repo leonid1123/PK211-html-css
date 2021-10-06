@@ -94,7 +94,7 @@ body{
     margin-left: 10%;
     margin-right: 10%;
 
-    height: 1000px;
+    height: 10000px;
 
 }
 .ArticleMenu {
@@ -138,5 +138,5 @@ body{
     border: 1px solid #e6e6e6 ;
     border-radius: 5px;
 
-    height: 500px;
+    height: 900px;
 }
