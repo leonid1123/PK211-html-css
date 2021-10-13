@@ -72,6 +72,7 @@
     </div>
     <script>
         let x = true;
+        console.log(x);
         let a = document.getElementById("res");
         let b = document.getElementById("txt");
         let c = document.getElementsByClassName("menu1");
@@ -79,9 +80,11 @@
             if (x) {
                 c[0].style.display = "none";
                 x=false;
+                console.log(x);
             } else {
                 c[0].style.display = "block";
                 x=true;
+                console.log(x);
             }
 
         }

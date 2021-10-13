@@ -1,0 +1,45 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+#wrapper {
+    display:flex;
+    justify-content: center;
+}
+#container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 296px;
+    flex-wrap: wrap;
+  }
+button {
+    background-color: #4CAF50; /* Green */
+    border: 1px solid #1a7a1d;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    flex-basis: 70px;
+    height: 30px;
+    margin: 2px;
+    flex-grow: 1;
+    opacity: 0.7;
+    transition: 0.3s;
+}
+button:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+#double {
+    flex-basis: 140px;
+}
+#history, #res {
+    margin:2px;
+    flex-basis: 296px;
+    text-align: right;
+}
+#history {
+    color: gray;
+}
