@@ -21,7 +21,7 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    flex-basis: 70px;
+    flex-basis: 22%;
     height: 30px;
     margin: 2px;
     flex-grow: 1;
@@ -33,9 +33,10 @@ button:hover {
     cursor: pointer;
 }
 #double {
-    flex-basis: 140px;
+    flex-basis: 139px;
 }
 #history, #res {
+    font-family: 'Roboto Mono', monospace;
     margin:2px;
     flex-basis: 296px;
     text-align: right;

@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap" rel="stylesheet"> 
     <title>Document</title>
 </head>
 
@@ -14,31 +17,43 @@
         <div id="container">
             <h4 id="history">0</h4>
             <h2 id="res">0</h2>
-            <button>1</button>
-            <button>2</button>
-            <button id="double">3</button>
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
-            <button>9</button>
-            <button>9</button>
-            <button>9</button>
-            <button>9</button>
-            <button>9</button>
-            <button>9</button>
-            <button>9</button>
-            <button>9</button>
-            <button>9</button>
-            <button>9</button>
-            <button>9</button>
-            <button>9</button>
-            <button>9</button>
-            <button>9</button>
+            <button>CE</button>
+            <button>C</button>
+            <button id="double">&lArr;</button>
+            <button>1/x</button>
+            <button>x<sup>2</sup></button>
+            <button>&radic;x</button>
+            <button>/</button>
+            <button onclick="numbers(this)">7</button>
+            <button onclick="numbers(this)">8</button>
+            <button onclick="numbers(this)">9</button>
+            <button>&lowast;</button>
+            <button onclick="numbers(this)">4</button>
+            <button onclick="numbers(this)">5</button>
+            <button onclick="numbers(this)">6</button>
+            <button>-</button>
+            <button onclick="numbers(this)">1</button>
+            <button onclick="numbers(this)">2</button>
+            <button onclick="numbers(this)">3</button>
+            <button>+</button>
+            <button>+/-</button>
+            <button onclick="numbers(this)">0</button>
+            <button onclick="numbers(this)">.</button>
+            <button>=</button>
         </div>
     </div>
+    <script>
+        RF = document.getElementById("res");
+        function numbers(btn) {
+            if (RF.innerHTML.length<19) {
+                RF.innerHTML+=btn.innerHTML;
+                if (RF.innerHTML.startsWith("0") && !RF.innerHTML.startsWith(".",1)) {
+                    let tmp = RF.innerHTML.substring(1);
+                    RF.innerHTML = tmp;
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>
