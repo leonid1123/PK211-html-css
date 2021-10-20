@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 
@@ -18,8 +18,8 @@
             <h4 id="history">0</h4>
             <h2 id="res">0</h2>
             <button>CE</button>
-            <button>C</button>
-            <button id="double">&lArr;</button>
+            <button onclick="ClearAll()">C</button>
+            <button id="double" onclick="Del()">&lArr;</button>
             <button>1/x</button>
             <button>x<sup>2</sup></button>
             <button>&radic;x</button>
@@ -43,16 +43,36 @@
         </div>
     </div>
     <script>
-        RF = document.getElementById("res");
+        let RF = document.getElementById("res");
+        let btn = document.getElementsByTagName("button");
+        for (var i=0;i<btn.length;i++){
+            btn[i].addEventListener("click",PlaySnd,false);
+        }
+        function PlaySnd(){
+            var audio = new Audio('mixkit-arcade-game-jump-coin-216.wav');
+            audio.play();
+        }
         function numbers(btn) {
-            if (RF.innerHTML.length<19) {
-                RF.innerHTML+=btn.innerHTML;
-                if (RF.innerHTML.startsWith("0") && !RF.innerHTML.startsWith(".",1)) {
+            if (RF.innerHTML.length < 19) {
+                RF.innerHTML += btn.innerHTML;
+                if (RF.innerHTML.startsWith("0") && !RF.innerHTML.startsWith(".", 1)) {
                     let tmp = RF.innerHTML.substring(1);
                     RF.innerHTML = tmp;
                 }
             }
         }
+        function ClearAll() {
+            RF.innerHTML = "0";
+        }
+        function Del() {
+            if (RF.innerHTML.length > 1) {
+                let tmp = RF.innerHTML.substring(0, RF.innerHTML.length - 1);
+                RF.innerHTML = tmp;
+            } else {
+                ClearAll();
+            }
+        }
+
     </script>
 </body>
 
