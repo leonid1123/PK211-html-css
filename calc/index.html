@@ -20,9 +20,9 @@
             <button>CE</button>
             <button onclick="ClearAll()">C</button>
             <button id="double" onclick="Del()">&lArr;</button>
-            <button>1/x</button>
-            <button>x<sup>2</sup></button>
-            <button>&radic;x</button>
+            <button onclick="Obratnoe()">1/x</button>
+            <button onclick="Stepen()">x<sup>2</sup></button>
+            <button onclick="Koren()">&radic;x</button>
             <button>/</button>
             <button onclick="numbers(this)">7</button>
             <button onclick="numbers(this)">8</button>
@@ -36,7 +36,7 @@
             <button onclick="numbers(this)">2</button>
             <button onclick="numbers(this)">3</button>
             <button>+</button>
-            <button>+/-</button>
+            <button onclick="SignChange()">+/-</button>
             <button onclick="numbers(this)">0</button>
             <button onclick="numbers(this)">.</button>
             <button>=</button>
@@ -71,6 +71,22 @@
             } else {
                 ClearAll();
             }
+        }
+        function Obratnoe() {
+            let tmp = 1/RF.innerHTML;
+            RF.innerHTML = tmp;
+        }
+        function Stepen() {
+            let tmp = Math.pow(RF.innerHTML,2);
+            RF.innerHTML = tmp;
+        }
+        function Koren() {
+            let tmp = Math.sqrt(RF.innerHTML);
+            RF.innerHTML = tmp;
+        }
+        function SignChange() {
+            let tmp = (-1)*RF.innerHTML;
+            RF.innerHTML = tmp;
         }
 
     </script>
