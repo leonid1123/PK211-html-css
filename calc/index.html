@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,63 +10,96 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
     <title>Calc</title>
 </head>
-
 <body>
     <div id="wrapper">
         <div id="container">
             <h4 id="history">0</h4>
             <h2 id="res">0</h2>
-            <button>CE</button>
+            <button onclick="calc.Clear();ClearAll()">CE</button>
             <button onclick="ClearAll()">C</button>
             <button id="double" onclick="Del()">&lArr;</button>
             <button onclick="Obratnoe()">1/x</button>
             <button onclick="Stepen()">x<sup>2</sup></button>
             <button onclick="Koren()">&radic;x</button>
-            <button onclick="calc.SetZnak(this.innerHTML);calc.SetfNum(RF.innerHTML)">/</button>
+            <button onclick="calc.SetZnak(this.innerHTML);calc.SetfNum(RF.innerHTML);hstr.Set(calc.fNum,calc.znak);hstr.Print()">/</button>
             <button onclick="numbers(this)">7</button>
             <button onclick="numbers(this)">8</button>
             <button onclick="numbers(this)">9</button>
-            <button onclick="calc.SetZnak(this.innerHTML);calc.SetfNum(RF.innerHTML)">*</button>
+            <button onclick="calc.SetZnak(this.innerHTML);calc.SetfNum(RF.innerHTML);hstr.Set(calc.fNum,calc.znak);hstr.Print()">*</button>
             <button onclick="numbers(this)">4</button>
             <button onclick="numbers(this)">5</button>
             <button onclick="numbers(this)">6</button>
-            <button onclick="calc.SetZnak(this.innerHTML);calc.SetfNum(RF.innerHTML)">-</button>
+            <button onclick="calc.SetZnak(this.innerHTML);calc.SetfNum(RF.innerHTML);hstr.Set(calc.fNum,calc.znak);hstr.Print()">-</button>
             <button onclick="numbers(this)">1</button>
             <button onclick="numbers(this)">2</button>
             <button onclick="numbers(this)">3</button>
-            <button onclick="calc.SetZnak(this.innerHTML);calc.SetfNum(RF.innerHTML)">+</button>
+            <button onclick="calc.SetZnak(this.innerHTML);calc.SetfNum(RF.innerHTML);hstr.Set(calc.fNum,calc.znak);hstr.Print()">+</button>
             <button onclick="SignChange()">+/-</button>
             <button onclick="numbers(this)">0</button>
             <button onclick="dot()">.</button>
-            <button onclick="calc.SetsNum(RF.innerHTML); calc.Calculate()">=</button>
+            <button onclick="calc.SetsNum(RF.innerHTML); calc.Calculate();hstr.Set(calc.sNum,'=');hstr.Print()">=</button>
         </div>
     </div>
     <script>
         let RF = document.getElementById("res");
-        let hs = document.getElementById("history");
         let btn = document.getElementsByTagName("button");
+        let hs = document.getElementById("history");
 
+        class History{
+            constructor(){
+                this.history="";
+            }
+            Set(newString){
+                this.history+=newString;
+            }
+            Set(newString1,newString2){
+                this.history = this.history+" "+newString1+" "+newString2;
+                //console.log(this.history);
+            }
+            
+            Print(){
+                hs.innerHTML = this.history;
+                //console.log(this.history);
+            }
+            Clear(){
+                hs.innerHTML="0";
+                this.history="";
+            }
+        }
 
         class Calc {
             constructor(fNum, sNum, znak) {
                 this.fNum = "";
                 this.sNum = "";
                 this.znak = "";
+                this.clicks = 0;//количество нажатий =
+                this.znakClicks=0;//количество нажатий знаков действий
+            }
+            Clear() {
+                this.fNum=this.sNum=this.znak="";
+                this.clicks=0;
             }
             SetfNum(fNum) {
                 this.fNum = fNum;
                 console.log(this.fNum);
             }
             SetsNum(sNum) {
-                this.sNum = sNum;
-                console.log(this.sNum);
+                if (this.clicks == 0) {
+                    this.sNum = sNum;
+                    console.log(this.sNum);
+                } else if (this.clicks > 0) {
+                    this.fNum = sNum;
+                }
             }
             SetZnak(znak) {
+                this.znakClicks++;
                 this.znak = znak;
                 console.log(this.znak);
             }
             Calculate() {
                 var tmp = "";
+                this.clicks++;
+                console.log(this.clicks);
                 switch (this.znak) {
                     case "+":
                         tmp = parseFloat(this.fNum) + parseFloat(this.sNum);
@@ -87,7 +119,7 @@
             }
         }
         let calc = new Calc();
-
+        let hstr = new History();
         // на все кнопки повесить обрабочик событий для проигрывания звука
         for (var i = 0; i < btn.length; i++) {
             btn[i].addEventListener("click", PlaySnd, false);
@@ -97,7 +129,6 @@
             var audio = new Audio('mixkit-arcade-game-jump-coin-216.wav');
             audio.play();
         }
-
         function ClearAll() { //простая функция
             RF.innerHTML = "0";
         }
@@ -127,6 +158,13 @@
             RF.innerHTML = tmp;
         }
         function numbers(btn) { //функция печатает цифры с макс длину и первого символа точки
+            if (calc.znakClicks>0) {//тут все поломалось
+                ClearAll();
+            }
+            if (calc.clicks>0){//или тут все поломалось
+                calc.Clear();
+                hstr.Clear();
+            }
             if (RF.innerHTML.length < 19) {
                 RF.innerHTML += btn.innerHTML;
                 if (RF.innerHTML.startsWith("0") && !RF.innerHTML.startsWith(".", 1)) {
@@ -140,25 +178,6 @@
                 RF.innerHTML += ".";
             }
         }
-        function Vtoroe(a, b, c) { //a - первое число, b - второе число, c - знак действия
-            let tmp = "";
-            switch (с) {
-                case "+":
-                    tmp = a + b;
-                    break;
-                case "-":
-                    tmp = a - b;
-                    break;
-                case "/":
-                    tmp = a / b;
-                    break;
-                case "*":
-                    tmp = a * b;
-                    break;
-            }
-            RF.innerHTML = tmp;
-        }
     </script>
 </body>
-
 </html>
