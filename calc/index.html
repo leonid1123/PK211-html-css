@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>Calc</title>
 </head>
 
 <body>
@@ -23,34 +23,70 @@
             <button onclick="Obratnoe()">1/x</button>
             <button onclick="Stepen()">x<sup>2</sup></button>
             <button onclick="Koren()">&radic;x</button>
-            <button onclick="Pervoe(this)">/</button>
+            <button onclick="calc.SetZnak(this.innerHTML);calc.SetfNum(RF.innerHTML)">/</button>
             <button onclick="numbers(this)">7</button>
             <button onclick="numbers(this)">8</button>
             <button onclick="numbers(this)">9</button>
-            <button onclick="Pervoe(this)">*</button>
+            <button onclick="calc.SetZnak(this.innerHTML);calc.SetfNum(RF.innerHTML)">*</button>
             <button onclick="numbers(this)">4</button>
             <button onclick="numbers(this)">5</button>
             <button onclick="numbers(this)">6</button>
-            <button onclick="Pervoe(this)">-</button>
+            <button onclick="calc.SetZnak(this.innerHTML);calc.SetfNum(RF.innerHTML)">-</button>
             <button onclick="numbers(this)">1</button>
             <button onclick="numbers(this)">2</button>
             <button onclick="numbers(this)">3</button>
-            <button onclick="Pervoe(this)">+</button>
+            <button onclick="calc.SetZnak(this.innerHTML);calc.SetfNum(RF.innerHTML)">+</button>
             <button onclick="SignChange()">+/-</button>
             <button onclick="numbers(this)">0</button>
             <button onclick="dot()">.</button>
-            <button onclick="Vtoroe( ,RF.innerHTML, )">=</button>
+            <button onclick="calc.SetsNum(RF.innerHTML); calc.Calculate()">=</button>
         </div>
     </div>
     <script>
         let RF = document.getElementById("res");
-
+        let hs = document.getElementById("history");
         let btn = document.getElementsByTagName("button");
 
-        let fNumber="";
-        let deystvie="";
-        let deystviePressed = false;
-        let ravnoPressed = false;
+
+        class Calc {
+            constructor(fNum, sNum, znak) {
+                this.fNum = "";
+                this.sNum = "";
+                this.znak = "";
+            }
+            SetfNum(fNum) {
+                this.fNum = fNum;
+                console.log(this.fNum);
+            }
+            SetsNum(sNum) {
+                this.sNum = sNum;
+                console.log(this.sNum);
+            }
+            SetZnak(znak) {
+                this.znak = znak;
+                console.log(this.znak);
+            }
+            Calculate() {
+                var tmp = "";
+                switch (this.znak) {
+                    case "+":
+                        tmp = parseFloat(this.fNum) + parseFloat(this.sNum);
+                        break;
+                    case "-":
+                        tmp = this.fNum - this.sNum;
+                        break;
+                    case "/":
+                        tmp = this.fNum / this.sNum;
+                        break;
+                    case "*":
+                        tmp = this.fNum * this.sNum;
+                        break;
+                }
+                RF.innerHTML = tmp;
+                console.log(tmp);
+            }
+        }
+        let calc = new Calc();
 
         // на все кнопки повесить обрабочик событий для проигрывания звука
         for (var i = 0; i < btn.length; i++) {
@@ -74,7 +110,7 @@
             }
         }
         function Obratnoe() { //простая функция
-            
+
             let tmp = 1 / RF.innerHTML;
             RF.innerHTML = tmp;
         }
@@ -101,30 +137,24 @@
         }
         function dot() { //функция поставить точку с проверками
             if (!RF.innerHTML.includes(".")) {
-                RF.innerHTML +=".";
+                RF.innerHTML += ".";
             }
         }
-        function Pervoe(a) {
-            //сделать объект и методы для хранения чисел и знака!
-            fNum = RF.innerHTML;
-            deystvie = a.innerHTML;
-        }
-
-        function Vtoroe(a,b,c) { //a - первое число, b - второе число, c - знак действия
-            let tmp="";
-            switch (с){
+        function Vtoroe(a, b, c) { //a - первое число, b - второе число, c - знак действия
+            let tmp = "";
+            switch (с) {
                 case "+":
                     tmp = a + b;
-                break;
+                    break;
                 case "-":
-                    tmp = a - b;    
-                break;
-                case "/": 
+                    tmp = a - b;
+                    break;
+                case "/":
                     tmp = a / b;
-                break;
+                    break;
                 case "*":
                     tmp = a * b;
-                break;
+                    break;
             }
             RF.innerHTML = tmp;
         }
