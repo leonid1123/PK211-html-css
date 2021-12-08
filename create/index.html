@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>JS Create/Del</title>
+</head>
+<body>
+    <h1>JS CREATE/DEL</h1>
+    <button onclick="tst()">Create</button>
+    <button>DELETE</button>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus magnam distinctio voluptatem quibusdam
+        voluptatum! Possimus dolore itaque voluptatem sunt maxime. Reprehenderit, architecto vel rerum earum reiciendis
+        suscipit ut ab! Vero.
+    </p>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione labore eligendi explicabo eaque velit veniam
+        minus corporis assumenda sequi nemo, odit libero! Eum, ipsa porro?
+    </p>
+    <div id="test">
+    </div>
+    <ul id="here">
+        <li>one</li>
+        <li>two</li>
+        <li>еще один</li>
+    </ul>
+    <script>
+        function tst() {
+            var newItem1 = document.createElement("div");
+            newItem1.className="newDiv1";
+
+            var newItem2 = document.createElement("div");
+            newItem2.className="newDiv2";
+
+            var txt = document.createTextNode("текст тут");
+
+            newItem2.appendChild(txt);
+
+            newItem1.appendChild(newItem2);
+
+            var x = document.getElementById("test");
+            
+            x.insertBefore(newItem1,x.firstChild);
+
+        }
+
+    </script>
+</body>
+</html>

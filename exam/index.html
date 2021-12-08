@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сессия</title>
+    <link rel="stylesheet" href="mystyle.css">
+</head>
+
+<body>
+    <audio id="myAudio">
+        <source src="01.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div id="wrapper">
+        <div class="topnav">
+            <a class="active" href="#home">Главная</a>
+            <a href="#news">Статистика</a>
+            <div class="dropdown">
+            <a href="">Скины</a>
+                <div class="dropdown-content">
+                    <a class="popShop" href="#" onclick="buy()">Скин 1 (10)</a>
+                    <a class="popShop" href="#">Скин 2 (20)</a>
+                    <a class="popShop" href="#">Скин 3 (30)</a>
+                </div>
+            </div>
+            <a class="toRight" href="#contact">Вход</a>
+            <a class="toRight" href="#about">Выход</a>
+          </div> 
+        <p id="testInfo"></p>
+        <button id="btn" onmouseenter="RUN()">Беги Форест! Беги!</button>
+    </div>
+    <script>
+        let para;
+        let popPict="poop-with-eyes.png"
+        let i=0;
+        let aud = document.getElementById("myAudio");
+        let btn = document.getElementById("btn");
+        let info = document.getElementById("testInfo");
+        let mother = document.getElementById("wrapper");
+        let skinLinks = document.getElementsByClassName("popShop");
+
+        maxX = window.innerWidth;
+        maxY = window.innerHeight;
+        
+        function RUN() {
+            i++;
+            info.innerHTML = "Успешных побегов:"+i;
+            aud.play();
+            para = document.createElement("img");
+            para.setAttribute("src",popPict);
+            console.log("aaa!!!");
+            let btnX = Math.random() * (maxX-100) + "px";
+            let btnY = Math.random() * (maxY-100)+50 + "px";
+            para.setAttribute("style","top:"+btnY+"; left:"+btnX+";");
+            btn.style.top = btnY;
+            btn.style.left = btnX;
+            mother.appendChild(para);
+            if (i>10 && i<20) {
+                //можно первый
+                skinLinks[0].setAttribute("style","color:green");
+                skinLinks[1].setAttribute("style","color:gray");
+                skinLinks[2].setAttribute("style","color:gray");
+            }
+            if (i>20 && i<30) {
+                //можно первый и второй
+                skinLinks[0].setAttribute("style","color:green");
+                skinLinks[1].setAttribute("style","color:green");
+                skinLinks[2].setAttribute("style","color:gray");
+            }
+            if (i>29) {
+                //можно первый,второй и третий
+                skinLinks[0].setAttribute("style","color:green");
+                skinLinks[1].setAttribute("style","color:green");
+                skinLinks[2].setAttribute("style","color:green");
+            }
+
+
+
+        }
+        function buy() {
+            if (i>10) {
+                popPict="poop-with-eyes1.png"
+            }
+        }
+
+    </script>
+</body>
+
+</html>
